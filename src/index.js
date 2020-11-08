@@ -6,7 +6,7 @@ const ctx = c.getContext('2d');
 ctx.lineWidth = 2;
 ctx.strokeStyle = 'red';
 
-const LINES = 10;
+const LINES = 12;
 const TOTAL_POINTS = (LINES + 1) * (LINES + 1);
 const DEGREES = (TOTAL_POINTS / 360);
 const LENGTH = window.innerWidth / (LINES + 1);
@@ -15,7 +15,7 @@ const SECONDS_PER_ROTATION = 12;
 const FPS = 60; // have to just assume 60 fsp
 const UNIT_PER_FRAME = (360 / FPS) / SECONDS_PER_ROTATION;
 const LENGTH_OFFSET = 0;
-const STROKE = 8;
+const STROKE = 4;
 
 let j = 0;
 
@@ -42,13 +42,17 @@ function init() {
 }
 
 function draw() {
-  // i += j * UNIT_PER_FRAME;
   j += UNIT_PER_FRAME;
+
   let i = 0 + j;
+  const verticalLines = Math.floor(window.innerHeight / LENGTH);
+
   ctx.clearRect(0, 0, c.width, c.height);
   ctx.fillStyle = rgb(255, 255, 255);
   ctx.fillRect(0, 0, c.width, c.height);
-  for (let r = 0; r <= LINES + 1; r++) {
+
+
+  for (let r = 0; r <= verticalLines + 1; r++) {
     for (let c = 0; c <= LINES + 1; c++) {
       i++;
       drawLine(r * LENGTH, c * LENGTH, LENGTH, i * DEGREES)
@@ -62,7 +66,3 @@ if (document.readyState !== 'loading') {
 } else {
   document.addEventListener('DOMCOntentLoaded', init);
 }
-
-// ctx.clearRect(0, 0, c.width, c.height);
-// ctx.fillStyle = rgb(r, g, b);
-// ctx.fillRect(0, 0, c.width, c.height);
