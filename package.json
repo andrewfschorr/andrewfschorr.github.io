@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
-    "deploy": "gh-pages -b master -d ."
+    "deploy": "yarn build && gh-pages -d dist"
   },
   "dependencies": {
     "tailwindcss": "^1.9.4",
